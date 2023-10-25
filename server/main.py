@@ -6,8 +6,8 @@ import boto3
 app = Flask(__name__)
 CORS(app)
 
-aws_access_key_id = 'AKIAS4JOSKPOTVTPOAHN'
-aws_secret_access_key = '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'
+aws_id = 'AKIAS4JOSKPOTVTPOAHN'
+aws_key = 'R/2z3SGHWLUn0O5vlODoS52A7fVigmTVqlLlx1QA'
 bucket_name = 'reportes-command-app'
 
 @app.route("/commands/mkdisk", methods=["POST"])
@@ -58,7 +58,7 @@ def rep():
 
 @app.route("/reports/all", methods=["GET"])
 def all_reports():
-    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)            
+    s3 = boto3.client('s3', aws_access_key_id=aws_id, aws_secret_access_key=aws_key)            
 
     reportes = []
     # Lista los objetos en el bucket
