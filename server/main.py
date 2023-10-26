@@ -6,8 +6,8 @@ import boto3
 app = Flask(__name__)
 CORS(app)
 
-aws_id = 'AKIAS4JOSKPOTVTPOAHN'
-aws_key = 'R/2z3SGHWLUn0O5vlODoS52A7fVigmTVqlLlx1QA'
+aws_id = ''
+aws_key = ''
 bucket_name = 'reportes-command-app'
 
 @app.route("/commands/mkdisk", methods=["POST"])
