@@ -6,10 +6,7 @@ from lib.structs import EBR, Partition
 
 class Rep:
 
-    aws_id = ''
-    aws_key = ''
-    bucket_name = 'reportes-command-app'
-    def disk(path_rep,path_disk):
+    def disk(path_rep,path_disk,aws_id,aws_key,bucket_name):
         path = os.path.dirname(path_rep)
         
         if not os.path.exists(path):
@@ -40,13 +37,13 @@ class Rep:
         if os.path.exists(path_rep):
             os.remove(path_rep)
         name = os.path.basename(path_rep)+".png"
-        s3 = boto3.client('s3', aws_access_key_id=Rep.aws_id, aws_secret_access_key=Rep.aws_key)            
-        s3.upload_file(path_rep+".png", Rep.bucket_name, name)
+        s3 = boto3.client('s3', aws_access_key_id=aws_id, aws_secret_access_key=aws_key)            
+        s3.upload_file(path_rep+".png", bucket_name, name)
         return "Se ha generado el reporte disk en la ruta "+str(path_rep)+".png\ny se ha cargado a la carpeta de reportes de la web"
     
 
 
-    def mbr(path_rep,path_disk):
+    def mbr(path_rep,path_disk,aws_id,aws_key,bucket_name):
         path = os.path.dirname(path_rep)
         if not os.path.exists(path):
             os.makedirs(path, exist_ok=True)
@@ -85,9 +82,9 @@ class Rep:
                 if os.path.exists(path_rep):
                     os.remove(path_rep)
                 name = os.path.basename(path_rep)+".png"
-                print(path_rep, name)
-                s3 = boto3.client('s3', aws_access_key_id=Rep.aws_id, aws_secret_access_key=Rep.aws_key)            
-                s3.upload_file(path_rep+".png", Rep.bucket_name, name)
+                print(path_rep, name)                        
+                s3 = boto3.client('s3', aws_access_key_id=aws_id, aws_secret_access_key=aws_key)            
+                s3.upload_file(path_rep+".png", bucket_name, name)
                 return "Se ha generado el reporte mbr en la ruta "+str(path_rep)+".png\ny se ha cargado a la carpeta de reportes de la web"
             except :
                 print("Error")

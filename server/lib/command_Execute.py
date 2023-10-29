@@ -120,7 +120,7 @@ def command_unmount(tokens):
         return{"Error":"true",
                 "Message":"Parámetros faltantes o incorrectos para el comando unmount."}
     
-def command_rep(tokens):
+def command_rep(tokens, aws_id, aws_key, bucket_name):
     name_param = None
     path_report = None
     id_param = None
@@ -140,13 +140,13 @@ def command_rep(tokens):
         if name_param == "mbr":
             print("Generando reporte mbr...")
             sleep(2)
-            message =Rep.mbr(path_report,path_disk)
+            message =Rep.mbr(path_report,path_disk,aws_id,aws_key,bucket_name)
             return {"Error":"false",
                     "Message":message}
         elif name_param == "disk":
             print("Generando reporte disk...")
             sleep(2)
-            message =Rep.disk(path_report,path_disk)
+            message =Rep.disk(path_report,path_disk,aws_id,aws_key,bucket_name)
             return {"Error":"false",
                     "Message":message}
     else:
