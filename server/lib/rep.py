@@ -76,12 +76,13 @@ class Rep:
                         graph_content+= Rep.column_rep_primary_mbr(part.type,part.fit,part.start,part.size,part.name,part.status) 
             graph_content+= Rep.footer_rep_mbr()      
             try:
-
-                src = gv.Source(graph_content,format="png")
-                src.render(path_rep)
-                if os.path.exists(path_rep):
-                    os.remove(path_rep)
                 name = os.path.basename(path_rep)+".png"
+                with open("tmp.dot", "w") as archivo:
+                    archivo.write(graph_content)
+                    archivo.close()
+                os . system( 'dot -Tpng tmp.dot -o '+path_rep+'.png')
+         
+                
                 print(path_rep, name)                        
                 s3 = boto3.client('s3', aws_access_key_id=aws_id, aws_secret_access_key=aws_key)            
                 s3.upload_file(path_rep+".png", bucket_name, name)
