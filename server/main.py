@@ -4,9 +4,9 @@ from lib.command_Execute import *
 import boto3
 from dotenv import load_dotenv
 app = Flask(__name__)
-CORS(app)
-load_dotenv()
 
+load_dotenv()
+CORS(app)
 aws_key = os.getenv("ACCESS_KEY")
 aws_id = os.getenv("ACCESS_ID")
 bucket_name = os.getenv("BUCKET_NAME")
