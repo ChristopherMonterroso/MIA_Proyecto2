@@ -79,8 +79,7 @@ class Rep:
 
             src = gv.Source(graph_content,format="png")
             src.render(path_rep)
-            if os.path.exists(path_rep):
-                os.remove(path_rep)
+            
             name = os.path.basename(path_rep)+".png"
             print(path_rep, name)                        
             s3 = boto3.client('s3', aws_access_key_id=aws_id, aws_secret_access_key=aws_key)            
